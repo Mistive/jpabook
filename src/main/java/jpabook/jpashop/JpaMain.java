@@ -1,5 +1,7 @@
 package jpabook.jpashop;
 
+import jpabook.jpashop.domain.Book;
+import jpabook.jpashop.domain.Item;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.OrderItem;
 
@@ -19,18 +21,10 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         try {
-            //1. 연관 편의 메소드를 활용
-            //Order order = new Order();
-            //order.addOrderItem(new OrderItem());
-
-            //2. 단방향일 경우 단순히 persist()를 통해 커맨드 작성
-            Order order = new Order();
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-            em.persist(orderItem);
-
+            Book book = new Book();
+            book.setAuthor("박민수");
+            book.setName("JPA");
+            em.persist(book);
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
