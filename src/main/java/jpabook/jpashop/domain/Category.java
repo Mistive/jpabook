@@ -1,19 +1,22 @@
 package jpabook.jpashop.domain;
 
 import javax.persistence.*;
-import java.sql.Array;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 public class Category extends BaseEntity{
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long id;
 
     private String name;
 //자기 자신도 연관관계를 생성할 수 있다.
-    @ManyToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "PARENT_ID")
     private Category parent;
 
