@@ -15,9 +15,9 @@ public class Member extends BaseEntity{
     @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address address;
 
     @OneToMany(mappedBy = "member") //Order의 member가 연관관계의 주인이다.
     private List<Order> orders = new ArrayList<>();
